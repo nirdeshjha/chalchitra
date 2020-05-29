@@ -1,0 +1,43 @@
+.top-left {
+    position: absolute;
+    color: navajowhite;
+    top: 8px;
+    left: 16px;
+    padding: 5px;
+  }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    margin-top: 7px;
+    margin-right: 5px;
+  }
+
+  .top {
+    padding-top: 150px;
+  }
+  .my_div{
+    padding-right: 20px;
+    padding-bottom: 100px;
+  }
+  .my_container {
+    background-color:#E0E0E0;
+    height: 100%;
+  }
+.signIn_div{
+  margin: 100px;
+}
+
+  @media  only screen  and (min-width: 100px) {
+    .signIn_div {
+      width: 40%;
+    }
+  }
