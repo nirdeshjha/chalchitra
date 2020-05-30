@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="height: 100%;">
+<html>
 
 <head>
     <title>Chalchitram/signIn</title>
@@ -33,8 +33,8 @@
     </script>
 </head>
 
-<body style="width: 100%;">
-    <div class="container-fluid bg-danger" style="width: 100%;">
+<body style=" height: 100%;">
+    <div class="container-fluid bg-danger">
         <img src="C:\Users\Nirdesh\OneDrive\Desktop\chalchitra\chalchitram\frontend\logo.png"
             style="margin: 0 50%; display: inline; padding: 5px;">
     </div>
@@ -83,7 +83,8 @@
 
                 <!-- Register -->
                 <p>Not a member?
-                    <a href="C:\Users\Nirdesh\OneDrive\Desktop\chalchitra\frontend\register.html">Register</a>
+                    <a
+                        href="C:\Users\Nirdesh\OneDrive\Desktop\chalchitra\chalchitram\frontend\register.html">Register</a>
                 </p>
 
                 <!-- Social login -->
@@ -105,7 +106,6 @@
             <!-- Form -->
 
         </div>
-
     </div>
     <script>
 
@@ -120,40 +120,54 @@
 
         }
         const sendData = () => {
+            let variable
             sendHttpRequest('POST', 'http://localhost:3000/api/auth', {
                 username: document.getElementById('materialLoginFormUserId').value,
                 password: document.getElementById('materialLoginFormPassword').value
             })
                 .then(response => {
-                    //console.log(response);
-                    return response.json();
-                    //return response.data
+                    variable = response.status
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Your are ready to go :)',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    if (variable === 200) {
+                        setTimeout(() => {
+                            const link = 'C:\\Users\\Nirdesh\\OneDrive\\Desktop\\chalchitra\\chalchitram\\frontend\\home.html'
+                            location.href = link
+                        }, 3000)
+
+                    }
+                    else {
+                        if (!document.getElementById('materialLoginFormUserId').value || !document.getElementById('materialLoginFormPassword').value) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Username or Password cannot be empty :(',
+                            })
+                        }
+                        else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Invalid Username or Password :(',
+                            })
+                        }
+                    }
+                    return response.json()
                 })
                 .then(res => {
                     localStorage.setItem("token", res.token);
+                    //console.log(variable)
                 })
                 .catch(err => {
-                    console.log(err, err.data);
+                    console.log(`${err}`);
                 })
-
+            //console.log(variable)
         }
-        /*const sendData = function () {
-            const user = {
-                username: document.getElementById('materialLoginFormUserId').value,
-                password: document.getElementById('materialLoginFormPassword').value
-            }
-            const options = {
-                method: 'POST',
-                body: JSON.stringify(user),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-            fetch('http://localhost:3000/api/auth', options)
-                .then(res => res.JSON)
-                .then(resData => console.log(resData))
-                .catch(err => console.log(err, err.data))
-        }*/
     </script>
 </body>
 
