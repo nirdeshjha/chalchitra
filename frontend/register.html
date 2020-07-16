@@ -40,8 +40,9 @@
 
 <body>
     <div class="container-fluid bg-danger" style="width: 100%;">
-        <img src="C:\Users\Nirdesh\OneDrive\Desktop\chalchitra\chalchitram\frontend\logo.png"
-            style="margin: 0 50%; display: inline; padding: 5px;">
+        <a href="C:\Users\Nirdesh\OneDrive\Desktop\chalchitra\chalchitram\frontend\frontend.html"><img
+                src="C:\Users\Nirdesh\OneDrive\Desktop\chalchitra\chalchitram\frontend\logo.png"
+                style="margin: 0 50%; display: inline; padding: 5px;"></a>
     </div>
     <div class="container">
         <nav class="navbar navbar-light bg-white">
@@ -196,6 +197,15 @@
                         const error = new Error('Something went wrong!')
                         error.data = errResData
                         throw error
+                    })
+                }
+                if (response.status === 200) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Your are ready to go :)',
+                        showConfirmButton: false,
+                        timer: 2000
                     })
                 }
                 return response.json()
